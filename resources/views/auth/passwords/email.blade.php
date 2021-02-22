@@ -6,7 +6,7 @@
         <div class="w-full max-w-sm">
             <div class="flex flex-col break-words bg-white border-2 shadow-md mt-20">
                 <div class="bg-gray-300 text-gray-700 uppercase text-center py-3 px-6 mb-0">
-                    {{ __('Reset password') }}
+                    {{ __('Reset Password') }}
                 </div>
 
                 <form class="py-10 px-5" method="POST" action="{{ route('password.email') }}" novalidate>
