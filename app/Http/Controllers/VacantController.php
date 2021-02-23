@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Salary;
 use App\Vacant;
 use App\Category;
 use App\Location;
@@ -35,8 +36,9 @@ class VacantController extends Controller
         $categories = Category::all();
         $experiences = Experience::all();
         $locations = Location::all();
+        $salaries = Salary::all();
 
-        return view('vacants.create', compact('categories', 'experiences', 'locations'));
+        return view('vacants.create', compact('categories', 'experiences', 'locations', 'salaries'));
     }
 
     /**
