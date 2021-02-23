@@ -33,6 +33,16 @@
             </select>
         </div>
 
+        <div class="mb-5">
+            <label for="location" class="block text-gray-700 text-sm mb-2">Ubicación</label>
+            <select name="location" id="location" class="block appearance-none w-full border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100">
+                <option disabled selected>-Selecciona-</option>
+                @foreach($locations as $location)
+                    <option value={{ $location->id }}>{{ $location->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <button type="submit" class="bg-teal-500 w-full hover:bg-teal-700 text-gray-100 p-3 focus:outline-none focus:shadow-outline font-semibold">
             Publicar Vacante
         </button>
