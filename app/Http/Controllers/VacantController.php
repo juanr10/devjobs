@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Vacant;
 use App\Category;
+use App\Experience;
 use Illuminate\Http\Request;
 
 class VacantController extends Controller
@@ -31,8 +32,9 @@ class VacantController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $experiences = Experience::all();
 
-        return view('vacants.create', compact('categories'));
+        return view('vacants.create', compact('categories', 'experiences'));
     }
 
     /**
