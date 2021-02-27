@@ -70,6 +70,10 @@
         <div class="mb-5">
             <label for="dropzone" class="block text-gray-700 text-sm mb-2">Imagen vacante:</label>
             <div id="dropzone" class="dropzone rounded bg-gray-100"></div>
+
+            <span id="uploadError" class="mt-2"></span>
+
+            <input type="hidden" name="image" id="image">
         </div>
 
         <button type="submit" class="bg-teal-500 w-full hover:bg-teal-700 text-gray-100 p-3 focus:outline-none focus:shadow-outline font-semibold">
@@ -104,16 +108,41 @@
             });
 
             const dropzone = new Dropzone('#dropzone', {
-                url: "/vacants/image",
+                url: "/vacants/uploadimage",
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
                 },
                 dictDefaultMessage: 'Arrastra o click aquí para subir una imagen',
-                acceptedFiles: '.png,.jpg,.jpeg,.gif',
+                acceptedFiles: '.png,.jpg,.jpeg,.gif,.bmp',
                 addRemoveLinks: true,
+                dictRemoveFile: 'Borrar archivo',
                 maxFiles: 1,
+                maxfilesexceeded: function(file) {
+                    if(this.files[1] != null) {
+                        this.removeFile(this.files[0]);
+                        this.addFile(file);
+                    }
+                },
+                removedfile: function(file, response) {
+                    //Cleaning DOM
+                    file.previewElement.parentNode.removeChild(file.previewElement);
+
+                    params = {
+                        image: file.serverName
+                    }
+
+                    axios.post('/vacants/deleteimage', params)
+                        .then(response => console.log(response) );
+                },
                 success: function(file, response) {
-                    console.log(response);
+                    //assigning the server response to the hidden input
+                    document.querySelector('#image').value = response.success;
+
+                    //adding file name from the server response
+                    file.serverName = response.success;
+
+                    //cleaning error message
+                    document.querySelector('#uploadError').textContent = "";
                 }
             });
         })
