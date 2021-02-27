@@ -3,6 +3,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/medium-editor.min.css" integrity="sha512-zYqhQjtcNMt8/h4RJallhYRev/et7+k/HDyry20li5fWSJYSExP9O07Ung28MUuXDneIFg0f2/U3HJZWsTNAiw==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.6/dropzone.min.css" integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A==" crossorigin="anonymous" />
 @endsection
 
 @section('navigation')
@@ -14,8 +15,8 @@
 
     <form class="max-w-lg mx-auto my-10" action="">
         <div class="mb-5">
-            <label for="title" class="block text-gray-700 text-sm mb-2">Titulo Vacante</label>
-            <input id="title" type="text" class="p-3 bg-gray-100 rounded form-input w-full @error('title') border-red-500 border @enderror" name="title" value="{{ old('title') }}">
+            <label for="title" class="block text-gray-700 text-sm mb-2">Titulo vacante</label>
+            <input id="title" type="text" class="p-3 bg-gray-100 rounded form-input w-full @error('title') border-red-500 border @enderror" name="title" value="{{ old('title') }}" placeholder="Titulo de la vacante">
         </div>
 
         <div class="mb-5">
@@ -48,7 +49,6 @@
             </select>
         </div>
 
-
         <div class="mb-5">
             <label for="salary" class="block text-gray-700 text-sm mb-2">Salario</label>
             <select name="salary" id="salary" class="block appearance-none w-full border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100">
@@ -65,6 +65,11 @@
             <input type="hidden" name="description" id="description">
         </div>
 
+        <div class="mb-5">
+            <label for="description" class="block text-gray-700 text-sm mb-2">Imagen vacante:</label>
+            <div id="dropzone" class="dropzone rounded bg-gray-100"></div>
+        </div>
+
         <button type="submit" class="bg-teal-500 w-full hover:bg-teal-700 text-gray-100 p-3 focus:outline-none focus:shadow-outline font-semibold">
             Publicar Vacante
         </button>
@@ -73,7 +78,11 @@
 
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/js/medium-editor.min.js" integrity="sha512-5D/0tAVbq1D3ZAzbxOnvpLt7Jl/n8m/YGASscHTNYsBvTcJnrYNiDIJm6We0RPJCpFJWowOPNz9ZJx7Ei+yFiA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.6/min/dropzone.min.js" integrity="sha512-KgeSi6qqjyihUcmxFn9Cwf8dehAB8FFZyl+2ijFEPyWu4ZM8ZOQ80c2so59rIdkkgsVsuTnlffjfgkiwDThewQ==" crossorigin="anonymous"></script>
+
     <script>
+        Dropzone.autoDiscover = false;
+        //Medium editor
         document.addEventListener('DOMContentLoaded', function() {
             const editor = new MediumEditor('.editable', {
                 toolbar: {
@@ -94,5 +103,11 @@
                 document.querySelector('#description').value = content;
             });
         })
+
+        //Dropzone
+        const dropzone = new Dropzone('#dropzone', {
+            url: "vacants/image"
+        });
+
     </script>
 @endsection
