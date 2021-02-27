@@ -60,8 +60,9 @@
         </div>
 
         <div class="mb-5">
-            <label for="salary" class="block text-gray-700 text-sm mb-2">Descripción del puesto:</label>
+            <label for="description" class="block text-gray-700 text-sm mb-2">Descripción del puesto:</label>
             <div class="editable block appearance-none w-full border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100"></div>
+            <input type="hidden" name="description" id="description">
         </div>
 
         <button type="submit" class="bg-teal-500 w-full hover:bg-teal-700 text-gray-100 p-3 focus:outline-none focus:shadow-outline font-semibold">
@@ -74,7 +75,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/js/medium-editor.min.js" integrity="sha512-5D/0tAVbq1D3ZAzbxOnvpLt7Jl/n8m/YGASscHTNYsBvTcJnrYNiDIJm6We0RPJCpFJWowOPNz9ZJx7Ei+yFiA==" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const editor = new MediumEditor('.editable');
+            const editor = new MediumEditor('.editable', {
+                toolbar: {
+                    buttons: ['bold', 'italic', 'underline', 'justifyLeft','justifyCenter', 'justifyRight', 'justifyFull', 'orderedList', 'unorderedList', 'h2', 'h3'],
+                    static: true,
+                    sticky: true,
+                },
+                anchor: {
+                    placeholderText: 'Introduce un enlace',
+                },
+                placeholder: {
+                    text: 'Información de la vacante'
+                }
+            });
+
+            editor.subscribe('editableInput', function (eventObj, editable) {
+                const content = editor.getContent();
+                document.querySelector('#description').value = content;
+            });
         })
     </script>
 @endsection
