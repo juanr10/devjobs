@@ -14,6 +14,8 @@
     <h1 class="text-2xl text-center mt-10">Nueva vacante</h1>
 
     <form class="max-w-lg mx-auto my-10" action="">
+        @csrf
+
         <div class="mb-5">
             <label for="title" class="block text-gray-700 text-sm mb-2">Titulo vacante</label>
             <input id="title" type="text" class="p-3 bg-gray-100 rounded form-input w-full @error('title') border-red-500 border @enderror" name="title" value="{{ old('title') }}" placeholder="Titulo de la vacante">
@@ -66,7 +68,7 @@
         </div>
 
         <div class="mb-5">
-            <label for="description" class="block text-gray-700 text-sm mb-2">Imagen vacante:</label>
+            <label for="dropzone" class="block text-gray-700 text-sm mb-2">Imagen vacante:</label>
             <div id="dropzone" class="dropzone rounded bg-gray-100"></div>
         </div>
 
@@ -82,6 +84,7 @@
 
     <script>
         Dropzone.autoDiscover = false;
+
         //Medium editor
         document.addEventListener('DOMContentLoaded', function() {
             const editor = new MediumEditor('.editable', {
@@ -89,9 +92,6 @@
                     buttons: ['bold', 'italic', 'underline', 'justifyLeft','justifyCenter', 'justifyRight', 'justifyFull', 'orderedList', 'unorderedList', 'h2', 'h3'],
                     static: true,
                     sticky: true,
-                },
-                anchor: {
-                    placeholderText: 'Introduce un enlace',
                 },
                 placeholder: {
                     text: 'Información de la vacante'
@@ -102,12 +102,20 @@
                 const content = editor.getContent();
                 document.querySelector('#description').value = content;
             });
+
+            const dropzone = new Dropzone('#dropzone', {
+                url: "/vacants/image",
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+                },
+                dictDefaultMessage: 'Arrastra o click aquí para subir una imagen',
+                acceptedFiles: '.png,.jpg,.jpeg,.gif',
+                addRemoveLinks: true,
+                maxFiles: 1,
+                success: function(file, response) {
+                    console.log(response);
+                }
+            });
         })
-
-        //Dropzone
-        const dropzone = new Dropzone('#dropzone', {
-            url: "vacants/image"
-        });
-
     </script>
 @endsection

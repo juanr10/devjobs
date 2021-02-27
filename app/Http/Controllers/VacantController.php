@@ -96,4 +96,11 @@ class VacantController extends Controller
     {
         //
     }
+
+    public function image(Request $request)
+    {
+        $image = $request->file;
+        return dd($image);
+        return 'Uploading image...';
+    }
 }
