@@ -8,6 +8,7 @@ use App\Category;
 use App\Location;
 use App\Experience;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreVacant;
 use Illuminate\Support\Facades\File;
 
 class VacantController extends Controller
@@ -48,7 +49,7 @@ class VacantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreVacant $request)
     {
         //
     }

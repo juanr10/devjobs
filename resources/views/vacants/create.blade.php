@@ -13,61 +13,97 @@
 @section('content')
     <h1 class="text-2xl text-center mt-10">Nueva vacante</h1>
 
-    <form class="max-w-lg mx-auto my-10" action="">
+    <form class="max-w-lg mx-auto my-10" method="post" action={{ route('vacants.store') }} novalidate>
         @csrf
 
-        <div class="mb-5">
+        <div class="flex flex-wrap mb-5">
             <label for="title" class="block text-gray-700 text-sm mb-2">Titulo vacante</label>
             <input id="title" type="text" class="p-3 bg-gray-100 rounded form-input w-full @error('title') border-red-500 border @enderror" name="title" value="{{ old('title') }}" placeholder="Titulo de la vacante">
+
+            @error('title')
+                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
-        <div class="mb-5">
+        <div class="flex flex-wrap mb-5">
             <label for="category" class="block text-gray-700 text-sm mb-2">Categoría</label>
             <select name="category" id="category" class="block appearance-none w-full border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100">
                 <option disabled selected>-Selecciona-</option>
                 @foreach($categories as $category)
-                    <option value={{ $category->id }}>{{ $category->name }}</option>
+                    <option {{ old('category') == $category->id ? 'selected' : '' }} value={{ $category->id }}>{{ $category->name }}</option>
                 @endforeach
             </select>
+
+            @error('category')
+                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
-        <div class="mb-5">
+        <div class="flex flex-wrap mb-5">
             <label for="experience" class="block text-gray-700 text-sm mb-2">Experiencia</label>
             <select name="experience" id="experience" class="block appearance-none w-full border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100">
                 <option disabled selected>-Selecciona-</option>
-                @foreach($experiences as $experiency)
-                    <option value={{ $experiency->id }}>{{ $experiency->name }}</option>
+                @foreach($experiences as $experience)
+                    <option {{ old('experience') == $experience->id ? 'selected' : '' }}  value={{ $experience->id }}>{{ $experience->name }}</option>
                 @endforeach
             </select>
+
+            @error('experience')
+                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
-        <div class="mb-5">
+        <div class="flex flex-wrap mb-5">
             <label for="location" class="block text-gray-700 text-sm mb-2">Ubicación</label>
             <select name="location" id="location" class="block appearance-none w-full border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100">
                 <option disabled selected>-Selecciona-</option>
                 @foreach($locations as $location)
-                    <option value={{ $location->id }}>{{ $location->name }}</option>
+                    <option {{ old('location') == $location->id ? 'selected' : '' }} value={{ $location->id }}>{{ $location->name }}</option>
                 @endforeach
             </select>
+
+            @error('location')
+                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
-        <div class="mb-5">
+        <div class="flex flex-wrap  mb-5">
             <label for="salary" class="block text-gray-700 text-sm mb-2">Salario</label>
             <select name="salary" id="salary" class="block appearance-none w-full border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100">
                 <option disabled selected>-Selecciona-</option>
                 @foreach($salaries as $salary)
-                    <option value={{ $salary->id }}>{{ $salary->name }}</option>
+                    <option {{ old('salary') == $salary->id ? 'selected' : '' }} value={{ $salary->id }}>{{ $salary->name }}</option>
                 @endforeach
             </select>
+
+            @error('salary')
+                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
-        <div class="mb-5">
+        <div class="flex flex-wrap mb-5">
             <label for="description" class="block text-gray-700 text-sm mb-2">Descripción del puesto:</label>
             <div class="editable block appearance-none w-full border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100"></div>
             <input type="hidden" name="description" id="description">
+
+            @error('description')
+                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
-        <div class="mb-5">
+        <div class="flex flex-wrap mb-5">
             <label for="skills" class="block text-gray-700 text-sm mb-2">Habilidades y conocimientos:</label>
 
             @php
