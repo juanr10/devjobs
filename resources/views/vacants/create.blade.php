@@ -68,6 +68,15 @@
         </div>
 
         <div class="mb-5">
+            <label for="skills" class="block text-gray-700 text-sm mb-2">Habilidades y conocimientos:</label>
+
+            @php
+                $skills = ['HTML5', 'CSS3', 'CSSGrid', 'Flexbox', 'JavaScript', 'jQuery', 'Node', 'Angular', 'VueJS', 'ReactJS', 'React Hooks', 'Redux', 'Apollo', 'GraphQL', 'TypeScript', 'PHP', 'Laravel', 'Symfony', 'Python', 'Django', 'ORM', 'Sequelize', 'Mongoose', 'SQL', 'MVC', 'SASS', 'WordPress', 'Express', 'Deno', 'React Native', 'Flutter', 'MobX', 'C#', 'Ruby on Rails']
+            @endphp
+            <skills-list :skills="{{ json_encode($skills) }}"></skills-list>
+        </div>
+
+        <div class="mb-5">
             <label for="dropzone" class="block text-gray-700 text-sm mb-2">Imagen vacante:</label>
             <div id="dropzone" class="dropzone rounded bg-gray-100"></div>
 
