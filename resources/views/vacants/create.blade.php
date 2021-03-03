@@ -118,7 +118,13 @@
 
             <span id="uploadError" class="mt-2"></span>
 
-            <input type="hidden" name="image" id="image">
+            <input type="hidden" name="image" id="image" value={{ old('image') }}>
+
+            @error('image')
+            <span class="bg-red-100 border border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
         </div>
 
         <button type="submit" class="bg-teal-500 w-full hover:bg-teal-700 text-gray-100 p-3 focus:outline-none focus:shadow-outline font-semibold">
@@ -162,6 +168,20 @@
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
                 },
+                init: function () {
+                    if(document.querySelector('#image').value.trim()) {
+                        let uploadedImage = {};
+                        uploadedImage.size = 1234;
+                        uploadedImage.name = document.querySelector('#image').value;
+
+                        this.options.addedfile.call(this, uploadedImage);
+                        this.options.thumbnail.call(this, uploadedImage, `/storage/vacants/${uploadedImage.name}`);
+
+                        uploadedImage.previewElement.classList.add('dz-processing');
+                        uploadedImage.previewElement.classList.add('dz-success');
+                        uploadedImage.previewElement.classList.add('dz-complete');
+                    }
+                },
                 dictDefaultMessage: 'Arrastra o click aquí para subir una imagen',
                 acceptedFiles: '.png,.jpg,.jpeg,.gif,.bmp',
                 addRemoveLinks: true,
@@ -178,7 +198,7 @@
                     file.previewElement.parentNode.removeChild(file.previewElement);
 
                     params = {
-                        image: file.serverName
+                        image: file.serverName ?? document.querySelector('#image').value
                     }
 
                     axios.post('/vacants/deleteimage', params)
