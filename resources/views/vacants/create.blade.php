@@ -21,7 +21,7 @@
             <input id="title" type="text" class="p-3 bg-gray-100 rounded form-input w-full @error('title') border-red-500 border @enderror" name="title" value="{{ old('title') }}" placeholder="Titulo de la vacante">
 
             @error('title')
-                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                <span class="bg-red-100 border border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
@@ -37,7 +37,7 @@
             </select>
 
             @error('category')
-                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                <span class="bg-red-100 border border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
@@ -53,7 +53,7 @@
             </select>
 
             @error('experience')
-                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                <span class="bg-red-100 border border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
@@ -69,7 +69,7 @@
             </select>
 
             @error('location')
-                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                <span class="bg-red-100 border border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
@@ -85,7 +85,7 @@
             </select>
 
             @error('salary')
-                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                <span class="bg-red-100 border border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
@@ -94,10 +94,10 @@
         <div class="flex flex-wrap mb-5">
             <label for="description" class="block text-gray-700 text-sm mb-2">Descripción del puesto:</label>
             <div class="editable block appearance-none w-full border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100"></div>
-            <input type="hidden" name="description" id="description">
+            <input type="hidden" name="description" id="description" value="{{ old('description') }}">
 
             @error('description')
-                <span class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                <span class="bg-red-100 border border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
@@ -138,7 +138,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const editor = new MediumEditor('.editable', {
                 toolbar: {
-                    buttons: ['bold', 'italic', 'underline', 'justifyLeft','justifyCenter', 'justifyRight', 'justifyFull', 'orderedList', 'unorderedList', 'h2', 'h3'],
+                    buttons: ['bold', 'italic', 'underline', 'justifyLeft','justifyCenter', 'justifyRight', 'justifyFull', 'orderedlist', 'unorderedlist', 'h2', 'h3'],
                     static: true,
                     sticky: true,
                 },
@@ -147,11 +147,16 @@
                 }
             });
 
+            //Fills the hidden input with the contents of the editor
             editor.subscribe('editableInput', function (eventObj, editable) {
                 const content = editor.getContent();
                 document.querySelector('#description').value = content;
             });
 
+            //Fill the editor with the content of the hidden input
+            editor.setContent(document.querySelector('#description').value);
+
+        //DropZone
             const dropzone = new Dropzone('#dropzone', {
                 url: "/vacants/uploadimage",
                 headers: {
