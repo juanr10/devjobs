@@ -104,27 +104,33 @@
         </div>
 
         <div class="flex flex-wrap mb-5">
-            <label for="skills" class="block text-gray-700 text-sm mb-2">Habilidades y conocimientos:</label>
+            <label for="skills" class="block text-gray-700 text-sm mb-5">Habilidades y conocimientos: <span class="text-xs">(Elige al menos 3)</span></label>
 
             @php
                 $skills = ['HTML5', 'CSS3', 'CSSGrid', 'Flexbox', 'JavaScript', 'jQuery', 'Node', 'Angular', 'VueJS', 'ReactJS', 'React Hooks', 'Redux', 'Apollo', 'GraphQL', 'TypeScript', 'PHP', 'Laravel', 'Symfony', 'Python', 'Django', 'ORM', 'Sequelize', 'Mongoose', 'SQL', 'MVC', 'SASS', 'WordPress', 'Express', 'Deno', 'React Native', 'Flutter', 'MobX', 'C#', 'Ruby on Rails']
             @endphp
-            <skills-list :skills="{{ json_encode($skills) }}"></skills-list>
+            <skills-list :oldskills="{{ json_encode(old('skills')) }}" :skills="{{ json_encode($skills) }}"></skills-list>
+            <br>
+
+            @error('skills')
+                <span class="bg-red-100 border border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
-        <div class="mb-5">
+        <div class="flex flex-wrap mb-5">
             <label for="dropzone" class="block text-gray-700 text-sm mb-2">Imagen vacante:</label>
-            <div id="dropzone" class="dropzone rounded bg-gray-100"></div>
 
+            <div id="dropzone" class="dropzone rounded bg-gray-100 w-full mt-2"></div>
             <span id="uploadError" class="mt-2"></span>
-
             <input type="hidden" name="image" id="image" value={{ old('image') }}>
 
             @error('image')
-            <span class="bg-red-100 border border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
+                <span class="bg-red-100 border border-red-500 text-red-700 p-4 w-full mt-5 text-sm" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
         <button type="submit" class="bg-teal-500 w-full hover:bg-teal-700 text-gray-100 p-3 focus:outline-none focus:shadow-outline font-semibold">

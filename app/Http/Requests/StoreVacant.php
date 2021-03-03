@@ -30,7 +30,8 @@ class StoreVacant extends FormRequest
             'location' => 'required',
             'salary' => 'required',
             'description' => 'required|min:50',
-            'image' => 'required'
+            'image' => 'required',
+            'skills' => 'required'
         ];
     }
 }
