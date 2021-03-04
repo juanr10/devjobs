@@ -25,7 +25,9 @@ class VacantController extends Controller
      */
     public function index()
     {
-        return view('vacants.index');
+        $vacants = Vacant::where('user_id', auth()->user()->id)->simplePaginate(2);
+
+        return view('vacants.index', compact('vacants'));
     }
 
     /**
@@ -51,7 +53,18 @@ class VacantController extends Controller
      */
     public function store(StoreVacant $request)
     {
-        //
+        auth()->user()->vacants()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'category_id' => $request->category,
+            'experience_id' => $request->experience,
+            'location_id' => $request->location,
+            'salary_id' => $request->salary,
+            'skills' => $request->skills,
+            'image' => $request->image
+        ]);
+
+        return redirect()->route('vacants.index');
     }
 
     /**
