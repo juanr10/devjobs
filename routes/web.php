@@ -21,11 +21,24 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Vacant routes
-Route::get('/vacants', 'VacantController@index')->name('vacants.index');
-Route::get('/vacants/create', 'VacantController@create')->name('vacants.create');
-Route::post('/vacants', 'VacantController@store')->name('vacants.store');
+/**
+ * Protected Routes
+ * Vacants management
+ */
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('/vacants', 'VacantController@index')->name('vacants.index');
+    Route::get('/vacants/create', 'VacantController@create')->name('vacants.create');
+    Route::post('/vacants', 'VacantController@store')->name('vacants.store');
 
-Route::post('/vacants/uploadimage', 'VacantController@uploadImage')->name('vacants.upload.image');
-Route::post('/vacants/deleteimage', 'VacantController@deleteImage')->name('vacants.delete.image');
+    //Images management
+    Route::post('/vacants/uploadimage', 'VacantController@uploadImage')->name('vacants.upload.image');
+    Route::post('/vacants/deleteimage', 'VacantController@deleteImage')->name('vacants.delete.image');
+});
+
+/**
+ * Public Routes
+ */
+Route::get('/vacants/{vacant}', 'VacantController@show')->name('vacants.show');
+
+
 
