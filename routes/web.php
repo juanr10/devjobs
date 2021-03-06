@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
  * Public Routes
  */
 Route::get('/vacants/{vacant}', 'VacantController@show')->name('vacants.show');
+Route::post('/applicants/store', 'ApplicantController@store')->name('applicants.store');
 
 
 

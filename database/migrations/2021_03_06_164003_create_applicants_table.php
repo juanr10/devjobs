@@ -18,7 +18,7 @@ class CreateApplicantsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('cv');
-            $table->string('vacant_id')->constrained();
+            $table->foreignId('vacant_id')->constrained();
             $table->timestamps();
         });
     }

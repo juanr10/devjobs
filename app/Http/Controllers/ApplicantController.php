@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Vacant;
 use App\Applicant;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreApplicant;
 
 class ApplicantController extends Controller
 {
@@ -33,9 +35,29 @@ class ApplicantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreApplicant $request)
     {
-        //
+        //store pdf
+        if ($request->file('cv')) {
+            $file = $request->file('cv');
+            $fileName = time() . "." . $request->file('cv')->extension();
+            $path = public_path("/storage/cv");
+            $file->move($path, $fileName);
+        }
+
+        $vacant = Vacant::find($request->vacant_id);
+
+        // if (!$vacant) {
+        //     return 'No se ha encontrado vacante';
+        // } -> validar luego con flash
+
+        $vacant->applicants()->create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'cv' => $fileName
+        ]);
+
+        return back()->with('status', '¡Tus datos se han enviado correctamente!');
     }
 
     /**

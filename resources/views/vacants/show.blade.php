@@ -10,7 +10,7 @@
     <div class="mt-10 mb-20 md:flex items-start">
         <div class="md:w-3/5">
             <p class="block text-gray-700 font-semibold my-2">
-                Publicada: <span class="font-normal">{{ $vacant->created_at->diffForHumans() }}</span>
+                Publicación: <span class="font-normal">{{ $vacant->created_at->diffForHumans() }}</span>
                 <span class="font-normal">por</span> {{ $vacant->user->name}}.
             </p>
             <p class="block text-gray-700 font-semibold my-2">
@@ -33,13 +33,13 @@
 
             <div class="flex flex-wrap justify-center">
                 @foreach($arraySkills as $skill)
-                    <p class="border border-gray-500 rounded py-2 px-8 text-gray-700 my-6 mx-2 mt-5">
+                    <p class="border border-gray-500 rounded py-2 px-8 text-gray-700 mx-2 mt-5">
                         {{ $skill }}
                     </p>
                 @endforeach
             </div>
 
-            <div class="flex flex-wrap justify-center">
+            <div class="flex flex-wrap justify-center mt-8">
                 <div class="w-6/12 sm:w-4/12 px-4">
                     <a href="/storage/vacants/{{ $vacant->image }}" data-lightbox="image" data-title="{{ $vacant->title }}">
                         <img src="/storage/vacants/{{ $vacant->image }}" alt="vacant-image" class="shadow-lg rounded max-w-full h-auto align-middle border-none">
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="description mt-8 mb-5">
+            <div class="description mt-6">
                 {!! $vacant->description !!}
             </div>
         </div>

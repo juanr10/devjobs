@@ -1,6 +1,8 @@
 <h2 class="text-l my-5 text-white font-semibold text-center uppercase">Contacta al Reclutador</h2>
 
-<form action="" novalidate class="p-3">
+<form action="{{ route('applicants.store') }}" method="POST" class="p-3" enctype="multipart/form-data" novalidate >
+    @csrf
+
     <div class="flex flex-wrap mb-5">
         <label for="name" class="block text-white text-sm font-semibold mb-4">Nombre:</label>
         <input id="name" type="text" class="block p-3 bg-gray-100 rounded form-input w-full @error('name') border border-red-500 @enderror"
