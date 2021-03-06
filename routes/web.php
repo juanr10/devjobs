@@ -23,16 +23,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /**
  * Protected Routes
- * Vacants management
+ * Vacants
  */
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/vacants', 'VacantController@index')->name('vacants.index');
     Route::get('/vacants/create', 'VacantController@create')->name('vacants.create');
     Route::post('/vacants', 'VacantController@store')->name('vacants.store');
 
-    //Images management
+    //Images
     Route::post('/vacants/uploadimage', 'VacantController@uploadImage')->name('vacants.upload.image');
     Route::post('/vacants/deleteimage', 'VacantController@deleteImage')->name('vacants.delete.image');
+
+    //Notifications
+    Route::get('/notifications', 'NotificationsController')->name('notifications');
 });
 
 /**
