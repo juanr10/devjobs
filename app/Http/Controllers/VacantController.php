@@ -107,13 +107,21 @@ class VacantController extends Controller
         //
     }
 
+    public function changeStatus(Request $request, Vacant $vacant)
+    {
+        $vacant->active = $request->status;
+        $vacant->save();
+
+        return response('vacant status successfully changed.', 200);
+    }
+
     public function uploadImage(Request $request)
     {
         $image = $request->file;
         $imageName = time() . '.' . $image->extension();
         $image->move(public_path('storage/vacants'), $imageName);
 
-        return response()->json(['success' => $imageName]);
+        return response('image successfully deleted uploaded', 200);
     }
 
     public function deleteImage(Request $request)
@@ -125,7 +133,7 @@ class VacantController extends Controller
                 File::delete('storage/vacants/'. $image);
             }
 
-            return response('image successfully deleted.', 200);
+            return response('image successfully deleted', 200);
         }
     }
 }
