@@ -2,10 +2,11 @@
 
 namespace App\Notifications;
 
+use App\Vacant;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class NewApplicant extends Notification
 {
@@ -16,7 +17,7 @@ class NewApplicant extends Notification
      *
      * @return void
      */
-    public function __construct($vacant)
+    public function __construct(Vacant $vacant)
     {
         $this->vacant = $vacant;
     }
@@ -42,8 +43,8 @@ class NewApplicant extends Notification
     {
         return (new MailMessage)
                     ->line('Hay un nuevo candidato para tu vacante.')
-                    ->line('La vacante es: ' . $this->vacant . '.')
-                    ->action('Ver candidato', url('/'))
+                    ->line('La vacante es: ' . $this->vacant->title . '.')
+                    ->action('Ver candidatos', url('/applicants/'.$this->vacant->id))
                     ->line('Visita devJobs para ver más detalles sobre el nuevo candidato.');
     }
 

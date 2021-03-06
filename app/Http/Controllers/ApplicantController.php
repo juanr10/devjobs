@@ -15,9 +15,9 @@ class ApplicantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Vacant $vacant)
     {
-        //
+        return view('applicants.index', compact('vacant'));
     }
 
     /**
@@ -58,9 +58,9 @@ class ApplicantController extends Controller
             'cv' => $fileName
         ]);
 
-        //notifty recruiter
+        //notify recruiter
         $recruiter = $vacant->user;
-        $recruiter->notify(new NewApplicant($vacant->title));
+        $recruiter->notify(new NewApplicant($vacant));
 
         return back()->with('status', '¡Tus datos se han enviado correctamente!');
     }
