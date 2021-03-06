@@ -7,6 +7,9 @@
 require('./bootstrap');
 require('lightbox2');
 
+import VueSweetAlert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 window.Vue = require('vue');
 
 /**
@@ -19,7 +22,7 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
+Vue.use(VueSweetAlert2);
 Vue.component('skills-list', require('./components/skillsList.vue').default);
 Vue.component('status', require('./components/status.vue').default);
 Vue.component('delete-vacant', require('./components/deleteVacant.vue').default);
