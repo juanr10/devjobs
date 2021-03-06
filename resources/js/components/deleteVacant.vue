@@ -18,11 +18,31 @@ export default {
             cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    this.$swal.fire(
-                    'Vacante eliminada',
-                    'Se ha eliminado correctamente',
-                    'success'
-                    )
+                    const params = {
+                        id: this.vacantId,
+                        _method: 'delete'
+                    };
+
+                    axios.post(`/vacants/${this.vacantId}`, params)
+                    .then(response => {
+                        this.$swal.fire(
+                         'Vacante eliminada',
+                         response.data.message,
+                         'success'
+                        );
+
+                        this.$el.parentNode.parentNode.parentNode.removeChild(this.$el.parentNode.parentNode);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        this.$swal.fire(
+                         'No se ha podido eliminar la vacante',
+                         'Por favor, vuelva a intentarlo más tarde',
+                         'error'
+                        )
+                    });
+
+
                 }
             })
         }

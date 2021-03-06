@@ -1929,7 +1929,19 @@ __webpack_require__.r(__webpack_exports__);
         cancelButtonText: 'Cancelar'
       }).then(function (result) {
         if (result.isConfirmed) {
-          _this.$swal.fire('Vacante eliminada', 'Se ha eliminado correctamente', 'success');
+          var params = {
+            id: _this.vacantId,
+            _method: 'delete'
+          };
+          axios.post("/vacants/".concat(_this.vacantId), params).then(function (response) {
+            _this.$swal.fire('Vacante eliminada', response.data.message, 'success');
+
+            _this.$el.parentNode.parentNode.parentNode.removeChild(_this.$el.parentNode.parentNode);
+          })["catch"](function (error) {
+            console.log(error);
+
+            _this.$swal.fire('No se ha podido eliminar la vacante', 'Por favor, vuelva a intentarlo más tarde', 'error');
+          });
         }
       });
     }
