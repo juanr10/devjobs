@@ -52,8 +52,8 @@
             </div>
         </div>
 
-        <aside class="md:w-2/5">
-            2
+        <aside class="md:w-2/5 bg-teal-500 p-3 rounded m-3">
+            @include('ui.contact', ['vacant' => $vacant])
         </aside>
     </div>
 @endsection
