@@ -22,6 +22,7 @@ window.Vue = require('vue');
 
 Vue.component('skills-list', require('./components/skillsList.vue').default);
 Vue.component('status', require('./components/status.vue').default);
+Vue.component('delete-vacant', require('./components/deleteVacant.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
