@@ -60,7 +60,7 @@ class ApplicantController extends Controller
 
         //notifty recruiter
         $recruiter = $vacant->user;
-        $recruiter->notify(new NewApplicant);
+        $recruiter->notify(new NewApplicant($vacant->title));
 
         return back()->with('status', '¡Tus datos se han enviado correctamente!');
     }
