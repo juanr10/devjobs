@@ -75,7 +75,7 @@
             @enderror
         </div>
 
-        <div class="flex flex-wrap  mb-5">
+        <div class="flex flex-wrap mb-5">
             <label for="salary" class="block text-gray-700 text-sm mb-2">Salario</label>
             <select name="salary" id="salary" class="block appearance-none w-full border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100">
                 <option disabled selected>-Selecciona-</option>
