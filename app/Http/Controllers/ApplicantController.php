@@ -6,6 +6,7 @@ use App\Vacant;
 use App\Applicant;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreApplicant;
+use App\Notifications\NewApplicant;
 
 class ApplicantController extends Controller
 {
@@ -56,6 +57,10 @@ class ApplicantController extends Controller
             'email' => $request->email,
             'cv' => $fileName
         ]);
+
+        //notifty recruiter
+        $recruiter = $vacant->user;
+        $recruiter->notify(new NewApplicant);
 
         return back()->with('status', '¡Tus datos se han enviado correctamente!');
     }
