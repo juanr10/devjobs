@@ -17,6 +17,9 @@ class ApplicantController extends Controller
      */
     public function index(Vacant $vacant)
     {
+        /* Only the recruiter can see the applicants for their own vacancies */
+        $this->authorize('view', $vacant);
+
         return view('applicants.index', compact('vacant'));
     }
 
