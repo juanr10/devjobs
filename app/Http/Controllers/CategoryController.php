@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function show(Category $category)
     {
-        $vacants = Vacant::where('category_id', $category->id)->paginate(10);
+        $vacants = Vacant::where('category_id', $category->id)->where('active', true)->paginate(10);
 
         return view('categories.show', compact('vacants', 'category'));
     }

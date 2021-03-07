@@ -19,14 +19,7 @@ class HomeController extends Controller
     {
         $vacants = Vacant::latest()->where('active', true)->take(10)->get();
         $locations = Location::all();
-        $experiences = Experience::all();
-        $salaries = Salary::all();
 
-        return view('home', compact(
-            'vacants',
-            'experiences',
-            'locations',
-            'salaries'
-        ));
+        return view('home', compact('vacants','locations'));
     }
 }

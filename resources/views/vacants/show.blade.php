@@ -57,7 +57,13 @@
         </div>
 
         <aside class="md:w-2/5 bg-teal-500 p-3 rounded m-3">
-            @include('ui.contact', ['vacant' => $vacant])
+            @if($vacant->active)
+                @include('ui.contact', ['vacant' => $vacant])
+            @else
+                <span class="flex flex-center bg-red-100 border border-yellow-500 text-yellow-700 w-full p-5 text-sm" role="alert">
+                    <strong>Esta vacante no está disponible.</strong>
+                </span>
+            @endif
         </aside>
     </div>
 @endsection

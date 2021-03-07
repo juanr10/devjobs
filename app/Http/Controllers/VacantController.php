@@ -9,6 +9,7 @@ use App\Location;
 use App\Experience;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreVacant;
+use App\Http\Requests\SearchVacant;
 use Illuminate\Support\Facades\File;
 
 class VacantController extends Controller
@@ -20,7 +21,7 @@ class VacantController extends Controller
      */
     public function index()
     {
-        $vacants = Vacant::where('user_id', auth()->user()->id)->simplePaginate(10);
+        $vacants = Vacant::where('user_id', auth()->user()->id)->latest()->simplePaginate(10);
 
         return view('vacants.index', compact('vacants'));
     }
@@ -70,6 +71,8 @@ class VacantController extends Controller
      */
     public function show(Vacant $vacant)
     {
+        // if ($vacant->active === 0) return abort(404);
+
         return view('vacants.show', compact('vacant'));
     }
 
@@ -137,14 +140,21 @@ class VacantController extends Controller
         return response()->json(['message' => 'Se ha eliminado la vacante '.$vacant->title]);
     }
 
-    public function search()
+    public function search(SearchVacant $request)
     {
-        return 'buscando...';
+        $category = $request->category;
+        $location = $request->location;
+
+        $vacants = Vacant::latest()
+            ->where('category_id', $category)
+            ->where('location_id', $location)
+            ->get();
+
+        return view('search.index', compact('vacants'));
     }
 
     public function results()
     {
-
     }
 
     public function changeStatus(Request $request, Vacant $vacant)
@@ -169,7 +179,7 @@ class VacantController extends Controller
         if ($request->ajax()) {
             $image = $request->get('image');
 
-            if (File::exists('storage/vacants/'.  $image )) {
+            if (File::exists('storage/vacants/'.  $image)) {
                 File::delete('storage/vacants/'. $image);
             }
 
