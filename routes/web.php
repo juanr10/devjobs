@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 Route::get('/', 'HomeController')->name('home');
 
 Route::get('/vacants/{vacant}', 'VacantController@show')->name('vacants.show');
+Route::get('/categories/{category}', 'CategoryController@show')->name('categories.show');
 
 Route::get('/applicants/{vacant}', 'ApplicantController@index')->name('applicants.index');
 Route::post('/applicants/store', 'ApplicantController@store')->name('applicants.store');
