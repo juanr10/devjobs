@@ -137,6 +137,16 @@ class VacantController extends Controller
         return response()->json(['message' => 'Se ha eliminado la vacante '.$vacant->title]);
     }
 
+    public function search()
+    {
+        return 'buscando...';
+    }
+
+    public function results()
+    {
+
+    }
+
     public function changeStatus(Request $request, Vacant $vacant)
     {
         $vacant->active = $request->status;

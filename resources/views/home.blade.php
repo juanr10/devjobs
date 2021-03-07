@@ -7,14 +7,13 @@
 @section('content')
     <div class="flex flex-col lg:flex-row shadow bg-white">
         <div class="lg:w-1/2 px-8 lg:px-12 py-12 lg:py-24">
-            <p class="text-2xl text-gray-700">
-                dev<span class="font-semibold">Jobs</span>
-            </p>
-
-            <h1 class="mt-2 sm:mt-4 text-3xl font-semibold text-gray-700 leading-tight">
-                Encuentra un trabajo remoto o en tu país
-                <span class="text-teal-500 block">Para Desarrolladores / Diseñadores Web</span>
+            <p class="text-2xl text-gray-700 text-center">Dev<span class="font-bold">Jobs</span></p>
+            <h1 class="mt-2 sm:mt-4 text-3xl font-semibold text-gray-700 leading-tight text-center">
+                Encuentra un trabajo remoto o en tu país para
+                <span class="text-teal-500 block">Desarrollador/a o Diseñador/a Web</span>
             </h1>
+
+            @include('ui.searcher')
         </div>
 
         <div class="block lg:w-1/2">
