@@ -29,6 +29,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/vacants', 'VacantController@index')->name('vacants.index');
     Route::get('/vacants/create', 'VacantController@create')->name('vacants.create');
     Route::post('/vacants', 'VacantController@store')->name('vacants.store');
+    Route::get('/vacants/{vacant}/edit', 'VacantController@edit')->name('vacants.edit');
+    Route::put('/vacants/{vacant}', 'VacantController@update')->name('vacants.update');
     Route::delete('/vacants/{vacant}', 'VacantController@destroy')->name('vacants.destroy');
     Route::post('/vacants/{vacant}', 'VacantController@changeStatus')->name('vacants.status');
 

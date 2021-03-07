@@ -81,7 +81,21 @@ class VacantController extends Controller
      */
     public function edit(Vacant $vacant)
     {
-        //
+        /* checks if the user is the same as the user who created the vacancy */
+        $this->authorize('view', $vacant);
+
+        $categories = Category::all();
+        $experiences = Experience::all();
+        $locations = Location::all();
+        $salaries = Salary::all();
+
+        return view('vacants.edit', compact(
+            'vacant',
+            'categories',
+            'experiences',
+            'locations',
+            'salaries'
+        ));
     }
 
     /**
@@ -91,9 +105,21 @@ class VacantController extends Controller
      * @param  \App\Vacant  $vacant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vacant $vacant)
+    public function update(StoreVacant $request, Vacant $vacant)
     {
-        //
+        $this->authorize('update', $vacant);
+
+        $vacant->title = $request->title;
+        $vacant->category_id = $request->category;
+        $vacant->experience_id = $request->experience;
+        $vacant->location_id = $request->location;
+        $vacant->salary_id = $request->salary;
+        $vacant->description = $request->description;
+        $vacant->skills = $request->skills;
+        $vacant->image = $request->image;
+        $vacant->save();
+
+        return redirect()->route('vacants.index');
     }
 
     /**
@@ -104,6 +130,8 @@ class VacantController extends Controller
      */
     public function destroy(Vacant $vacant)
     {
+        $this->authorize('delete', $vacant);
+
         $vacant->delete();
 
         return response()->json(['message' => 'Se ha eliminado la vacante '.$vacant->title]);
