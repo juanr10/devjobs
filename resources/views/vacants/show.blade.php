@@ -10,7 +10,7 @@
     <div class="mt-10 mb-20 md:flex items-start">
         <div class="md:w-3/5">
             <p class="block text-gray-700 font-semibold my-2">
-                Publicación: <span class="font-normal">{{ $vacant->created_at->diffForHumans() }}</span>
+                Publicado <span class="font-normal">{{ $vacant->created_at->diffForHumans() }}</span>
                 <span class="font-normal">por</span> {{ $vacant->user->name}}.
             </p>
             <p class="block text-gray-700 font-semibold my-2">

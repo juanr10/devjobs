@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Vacant;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,18 +12,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __invoke(Request $request)
     {
-        $this->middleware(['auth', 'verified']);
-    }
+        $vacants = Vacant::latest()->where('active', true)->take(10)->get();
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        return view('home');
+        return view('home', compact('vacants'));
     }
 }
