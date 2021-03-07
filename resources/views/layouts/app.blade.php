@@ -44,6 +44,11 @@
                                 <a class="text-white no-underline hover:underline hover:text-gray-300 p-3" href="{{ route('register') }}">{{ __('Register') }}</a>
                             @endif
                         @else
+                            @if(auth()->check())
+                                <a class="text-gray-300 text-sm pr-8" href="{{ route('vacants.index') }}">
+                                    Mis vacantes
+                                </a>
+                            @endif
                             <span class="text-gray-300 text-sm pr-4"> {{ Auth::user()->name }}  <a href={{ route('notifications') }} class="bg-teal-500 rounded-full px-1 mr-2 font-semibold text-sm text-white">{{ Auth::user()->unreadNotifications->count() }}</a> </span>
 
                             <a class="no-underline hover:underline text-gray-300 text-sm p-3" href="{{ route('logout') }}"
