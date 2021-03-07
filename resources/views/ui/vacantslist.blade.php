@@ -1,4 +1,4 @@
-<ul class="mt-10 grid grid-cols-10 md:grid-cols-2 gap-8">
+<ul class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
     @foreach($vacants as $vacant)
         <li class="p-10 border border-gray-300 bg-white shadow">
             <h2 class="text-xl font-semibold text-teal-500">{{ $vacant->title }}</h2>

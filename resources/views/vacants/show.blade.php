@@ -4,8 +4,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" />
 @endsection
 
+@section('navigation')
+    @include('ui.categoriesnav')
+@endsection
+
 @section('content')
-    <h1 class="text-2xl text-center mt-10">{{ $vacant->title }}</h1>
+    <h1 class="text-2xl text-center">{{ $vacant->title }}</h1>
 
     <div class="mt-10 mb-20 md:flex items-start">
         <div class="md:w-3/5">
