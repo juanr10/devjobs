@@ -107,22 +107,22 @@
                 </li>
                 @if (Route::has('register'))
                 <li class="mr-3">
-                    <a class="inline-block no-underline hover:text-gray-400 hover:text-underline py-2 px-4" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <a class="inline-block no-underline hover:text-gray-400 hover:text-underline py-2 px-4 mb-3 lg:mb-0" href="{{ route('register') }}">{{ __('Register') }}</a>
                 </li>
                 @endif
             @else
                 <li class="mr-3">
-                    <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="{{ route('logout') }}"
+                    <a class="inline-block no-underline hover:text-gray-400 hover:text-underline py-2 px-4" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
                 </li>
                 <li class="mr-3">
-                    <span class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"> {{ Auth::user()->name }} <a href={{ route('notifications') }} class="bg-teal-500 rounded-full px-1 mr-2 font-semibold text-sm text-white">{{ Auth::user()->unreadNotifications->count() }}</a> </span>
+                    <span class="inline-block no-underline hover:text-gray-400 hover:text-underline py-2 px-4"> {{ Auth::user()->name }} <a href={{ route('notifications') }} class="bg-teal-500 rounded-full px-1 mr-2 font-semibold text-sm text-white">{{ Auth::user()->unreadNotifications->count() }}</a> </span>
                 </li>
                 <li>
-                    <form class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-1" id="logout-form" action="{{ route('logout') }}" method="POST" class="display:none">
+                    <form class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-1 " id="logout-form" action="{{ route('logout') }}" method="POST" class="display:none">
                         @csrf
                     </form>
                 </li>
