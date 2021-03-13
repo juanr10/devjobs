@@ -21,58 +21,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-{{-- <body class="bg-gray-200 min-h-screen leading-none">
-    @if(session('status'))
-        <div class="bg-teal-500 p-8 text-center text-white font-semibold">
-            {{ session('status') }}
-        </div>
-    @endif
-
-    <div id="app">
-        <nav class="bg-gray-800 shadow-md py-6">
-            <div class="container mx-auto md:px-0">
-                <div class="flex items-center justify-around">
-                    <a class="text-2xl text-white" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-
-                    <nav class="flex-1 text-right">
-                        <!-- Authentication Links -->
-                        @guest
-                                <a class="text-white no-underline hover:underline hover:text-gray-300 p-3" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            @if (Route::has('register'))
-                                <a class="text-white no-underline hover:underline hover:text-gray-300 p-3" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            @endif
-                        @else
-                            @if(auth()->check())
-                                <a class="text-gray-300 text-sm pr-8" href="{{ route('vacants.index') }}">
-                                    Mis vacantes
-                                </a>
-                            @endif
-                            <span class="text-gray-300 text-sm pr-4"> {{ Auth::user()->name }}  <a href={{ route('notifications') }} class="bg-teal-500 rounded-full px-1 mr-2 font-semibold text-sm text-white">{{ Auth::user()->unreadNotifications->count() }}</a> </span>
-
-                            <a class="no-underline hover:underline text-gray-300 text-sm p-3" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        @endguest
-                    </nav>
-                </div>
-            </div>
-        </nav>
-
-
-
-    </div>
-
-
-</body> --}}
-
 
 <body class="leading-normal tracking-normal gradient bg-gray-200" style="font-family: 'Source Sans Pro', sans-serif;">
     <!--Nav-->
@@ -99,7 +47,7 @@
             </svg>
           </button>
         </div>
-        <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
+        <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-gray-700 lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
           <ul id="navElement" class="list-reset lg:flex justify-end flex-1 items-center text-white">
             @guest
                 <li class="mr-3">
@@ -122,7 +70,7 @@
                     <span class="inline-block no-underline hover:text-gray-400 hover:text-underline py-2 px-4"> {{ Auth::user()->name }} <a href={{ route('notifications') }} class="bg-teal-500 rounded-full px-1 mr-2 font-semibold text-sm text-white">{{ Auth::user()->unreadNotifications->count() }}</a> </span>
                 </li>
                 <li>
-                    <form class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-1 " id="logout-form" action="{{ route('logout') }}" method="POST" class="display:none">
+                    <form class="inline-block no-underline hover:text-gray-800 hover:text-underline py-2 px-1 " id="logout-form" action="{{ route('logout') }}" method="POST" class="display:none">
                         @csrf
                     </form>
                 </li>
@@ -182,7 +130,7 @@
             toToggle[i].classList.remove("text-white");
           }
           header.classList.add("shadow");
-          navcontent.classList.remove("bg-gray-100");
+          navcontent.classList.remove("bg-gray-700");
           navcontent.classList.add("bg-white");
           navToggle.classList.remove("text-white");
           navToggle.classList.add("text-black");
@@ -201,7 +149,7 @@
           }
           header.classList.remove("shadow");
           navcontent.classList.remove("bg-white");
-          navcontent.classList.add("bg-gray-100");
+          navcontent.classList.add("bg-gray-700");
           navToggle.classList.remove("text-black");
           navToggle.classList.add("text-white");
         }
