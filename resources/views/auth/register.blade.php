@@ -22,7 +22,7 @@
                             </svg>
                         </span>
                         <input type="text" name="name" value="{{ old('name') }}"
-                            class="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-600 shadow-sm text-base focus:ring focus:border-gray-500"
+                            class="flex-1 appearance-none border {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }} w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-600 shadow-sm text-base focus:ring focus:border-gray-500"
                             placeholder="Nombre" />
                     </div>
                     @error('name')
@@ -45,7 +45,7 @@
                             </svg>
                         </span>
                         <input type="email" name="email" value="{{ old('email') }}"
-                            class="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-600 shadow-sm text-base focus:ring focus:border-gray-500"
+                            class="flex-1 appearance-none border {{ $errors->has('email') ? 'border-red-500' : 'border-gray-300' }} w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-600 shadow-sm text-base focus:ring focus:border-gray-500"
                             placeholder="Email" />
                     </div>
                     @error('email')
@@ -68,7 +68,7 @@
                             </svg>
                         </span>
                         <input type="password" name="password" value="{{ old('password') }}"
-                            class="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-600 shadow-sm text-base focus:ring focus:border-gray-500"
+                            class="flex-1 appearance-none border {{ $errors->has('password') ? 'border-red-500' : 'border-gray-300' }} w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-600 shadow-sm text-base focus:ring focus:border-gray-500"
                             placeholder="Contraseña" />
                     </div>
                     @error('password')
@@ -90,7 +90,7 @@
                             </svg>
                         </span>
                         <input type="password" name="password_confirmation" value="{{ old('password_confirmation') }}"
-                            class="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-600 shadow-sm text-base focus:ring focus:border-gray-500"
+                            class="flex-1 appearance-none border {{ $errors->has('password') ? 'border-red-500' : 'border-gray-300' }}w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-600 shadow-sm text-base focus:ring focus:border-gray-500"
                             placeholder="Repetir contraseña" />
                     </div>
                 </div>
