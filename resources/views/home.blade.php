@@ -4,24 +4,30 @@
     @include('ui.categoriesnav')
 @endsection
 
-@section('content')
-    <div class="flex flex-col lg:flex-row shadow bg-white">
-        <div class="lg:w-1/2 px-8 lg:px-12 py-12 lg:py-24">
-            <p class="text-2xl text-gray-700 text-center">Dev<span class="font-bold">Jobs</span></p>
-            <h1 class="mt-2 sm:mt-4 text-3xl font-semibold text-gray-700 leading-tight text-center">
-                Encuentra un trabajo remoto o en tu país para
-                <span class="text-teal-500 block">Desarrollador/a o Diseñador/a Web</span>
+@section('heroSection')
+
+    <div class="py-10 shadow bg-teal-300">
+        <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+        <!--Left Col-->
+        <div class="flex flex-col w-full md:w-3/5 justify-center items-start text-center md:text-left">
+            <p class="uppercase tracking-loose text-xl w-full">¿Es desarrollador o diseñador?</p>
+            <h1 class="my-4 text-5xl font-bold leading-tight">
+                Encuentre trabajo remoto o en su país en tiempo record.
             </h1>
+            <p class="leading-normal text-2xl mb-8">
+                Busque ofertas y pongase en contacto con los reclutadores rápidamente.
+            </p>
 
             @include('ui.searcher')
         </div>
-
-        <div class="block lg:w-1/2">
-            <img class="inset-0 h-full w-full object-cover object-center" src="{{ asset('img/4321.jpg') }}" alt="devJobs">
+        <!--Right Col-->
+        <div class="w-full md:w-2/5 py-6 text-center">
+            <img class="w-full md:w-4/5 z-50" src="{{ asset("img/hero.png") }}" />
+        </div>
         </div>
     </div>
 
-    <div class="my-5 bg-gray-100 shadow">
+    <div class="my-5bg-gray-100 shadow">
         <h1 class="w-full my-2 text-4xl font-bold leading-tight text-center text-gray-700 pt-5">
             Últimas vacantes añadidas
         </h1>

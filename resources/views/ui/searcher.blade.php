@@ -1,4 +1,4 @@
-<form class="max-w-lg mx-auto my-10" method="post" action={{ route('vacants.search') }} novalidate>
+<form class="w-4/5 mx-auto lg:ml-0" method="post" action={{ route('vacants.search') }} novalidate>
     @csrf
 
     <div class="flex flex-wrap mb-5">
@@ -33,7 +33,7 @@
         @enderror
     </div>
 
-    <button type="submit" class="bg-teal-500 w-full hover:bg-teal-700 text-gray-100 p-3 focus:outline-none focus:shadow-outline font-semibold">
+    <button type="submit" class="bg-teal-500 w-full hover:bg-teal-700 text-gray-100 p-3 focus:outline-none focus:shadow-outline font-semibold transform transition hover:scale-105 duration-300 ease-in-out">
         Buscar
     </button>
 </form>
