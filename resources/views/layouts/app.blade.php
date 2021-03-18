@@ -45,9 +45,6 @@
         <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-gray-700 lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
           <ul id="navElement" class="list-reset lg:flex justify-end flex-1 items-center text-white">
             @guest
-                <li class="mr-3">
-                    <a class="inline-block no-underline hover:text-gray-400 hover:text-underline py-2 px-4" href="{{ route('login') }}">Contacto</a>
-                </li>
                 @if (Route::has('register'))
                 <li class="mr-3">
                     <a class="inline-block no-underline hover:text-gray-400 hover:text-underline py-2 px-4 mb-3 lg:mb-0" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -90,9 +87,11 @@
             </nav>
         </div>
 
+        @yield('heroSection')
+
         @yield('login&Register')
 
-        <main class="mt-10 container mx-auto py-4">
+        <main class="container mx-auto py-4">
             @yield('content')
         </main>
     </div>
