@@ -11,7 +11,10 @@
 @endsection
 
 @section('content')
-    <h1 class="text-2xl text-center mt-10">Nueva vacante</h1>
+    <h1 class="text-2xl text-center mt-10">Publicar vacante</h1>
+    <div class="w-full">
+        <div class="h-1 mx-auto bg-teal-500 w-64 opacity-25 my-0 py-0 rounded-t"></div>
+    </div>
 
     <form class="max-w-lg mx-auto my-10" method="post" action={{ route('vacants.store') }} novalidate>
         @csrf
@@ -133,8 +136,8 @@
             @enderror
         </div>
 
-        <button type="submit" class="bg-teal-500 w-full hover:bg-teal-700 text-gray-100 p-3 focus:outline-none focus:shadow-outline font-semibold">
-            Publicar Vacante
+        <button type="submit" class="w-full mt-6 px-4 py-2 text-base font-semibold text-center text-white transform transition hover:scale-105 duration-300 ease-in-out bg-teal-500 shadow-md hover:bg-teal-600 focus:outline-none focus:ring-2">
+            Publicar
         </button>
     </form>
 @endsection

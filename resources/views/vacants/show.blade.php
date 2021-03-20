@@ -58,7 +58,12 @@
                                 </div>
                                 <p class="font-bold ml-3">
                                     Publicado por <b>{{ $vacant->user->name}}.</b> <br />
-                                    <span class="text-base font-light">{{ $vacant->created_at->diffForHumans() }}.</span>
+                                    <span class="text-base font-light">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="inline mb-1"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                          </svg>
+                                        {{ $vacant->created_at->diffForHumans() }}.
+                                    </span>
                                 </p>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 <section>
     <div class="container mx-auto flex flex-wrap p-5">
         @foreach($vacants as $vacant)
-            <div class="w-full md:w-1/2 p-3 flex flex-col flex-grow flex-shrink">
+            <div class="w-full md:w-1/2 p-3 flex flex-col">
                 <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
                     <div class="w-full font-bold text-xl px-6 text-teal-600 pt-3">
                         {{ $vacant->title }}.

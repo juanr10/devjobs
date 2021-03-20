@@ -7,6 +7,9 @@
 @section('content')
 
 <h1 class="text-2xl text-center mt-10">Administrar Vacantes</h1>
+<div class="w-full">
+    <div class="h-1 mx-auto bg-teal-500 w-64 opacity-25 my-0 py-0 rounded-t"></div>
+</div>
 
 @if($vacants->isNotEmpty())
     <div class="flex flex-col mt-10">

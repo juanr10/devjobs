@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="my-10 bg-gray-100 p-10 shadow">
-        <h1 class="w-full my-2 text-4xl font-bold leading-tight text-center text-gray-700 pt-5">
+        <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center text-gray-700 pt-5">
             Resultados de la búsqueda:
         </h1>
         <div class="w-full">
