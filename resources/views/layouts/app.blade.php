@@ -96,6 +96,10 @@
         </main>
     </div>
 
+    <div class="w-full h-10 bg-gray-700 flex items-center justify-center">
+        <p class="text-center text-white">&copy; {{ date("Y") }} devJobs. All rights reserved.</p>
+    </div>
+
     @yield('scripts')
 
     <script>
