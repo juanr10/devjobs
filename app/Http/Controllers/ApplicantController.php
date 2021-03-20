@@ -65,7 +65,7 @@ class ApplicantController extends Controller
         $recruiter = $vacant->user;
         $recruiter->notify(new NewApplicant($vacant));
 
-        return back()->with('status', '¡Tus datos se han enviado correctamente!');
+        return back()->with('suscription', 'Sus datos se han enviado correctamente.');
     }
 
     /**
