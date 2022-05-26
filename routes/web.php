@@ -2,22 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Auth::routes(['verify' => true]);
 
 /**
- * Protected Routes
- * Vacants
+ * Protected Routes: Vacants
  */
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/vacants', 'VacantController@index')->name('vacants.index');
@@ -48,6 +37,3 @@ Route::get('/categories/{category}', 'CategoryController@show')->name('categorie
 
 Route::get('/applicants/{vacant}', 'ApplicantController@index')->name('applicants.index');
 Route::post('/applicants/store', 'ApplicantController@store')->name('applicants.store');
-
-
-
