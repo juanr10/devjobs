@@ -18,11 +18,6 @@ class ApplicantController extends Controller
         return view('applicants.index', compact('vacant'));
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(StoreApplicant $request)
     {
         //store pdf
@@ -50,25 +45,5 @@ class ApplicantController extends Controller
         $recruiter->notify(new NewApplicant($vacant));
 
         return back()->with('suscription', 'Sus datos se han enviado correctamente.');
-    }
-
-    public function show(Applicant $applicant)
-    {
-        //
-    }
-
-    public function edit(Applicant $applicant)
-    {
-        //
-    }
-
-    public function update(Request $request, Applicant $applicant)
-    {
-        //
-    }
-
-    public function destroy(Applicant $applicant)
-    {
-        //
     }
 }
