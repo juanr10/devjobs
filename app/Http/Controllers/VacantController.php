@@ -130,7 +130,7 @@ class VacantController extends Controller
         $imageName = time() . '.' . $image->extension();
         $image->move(public_path('storage/vacants'), $imageName);
 
-        return response('image successfully deleted uploaded', 200);
+        return response('image successfully uploaded', 200);
     }
 
     public function deleteImage(Request $request)
