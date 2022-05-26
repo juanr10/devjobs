@@ -1,6 +1,6 @@
 <template>
     <span @click="changeStatus" :key="statusVacantData"
-        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" :class="changeClassStatus()">
+        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full cursor-pointer" :class="changeClassStatus()">
         {{ statusText }}
     </span>
 </template>
