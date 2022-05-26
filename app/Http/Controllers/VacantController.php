@@ -14,11 +14,6 @@ use Illuminate\Support\Facades\File;
 
 class VacantController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $vacants = Vacant::where('user_id', auth()->user()->id)->latest()->simplePaginate(10);
@@ -26,11 +21,6 @@ class VacantController extends Controller
         return view('vacants.index', compact('vacants'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $categories = Category::all();
@@ -41,12 +31,6 @@ class VacantController extends Controller
         return view('vacants.create', compact('categories', 'experiences', 'locations', 'salaries'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreVacant $request)
     {
         auth()->user()->vacants()->create([
@@ -63,12 +47,6 @@ class VacantController extends Controller
         return redirect()->route('vacants.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Vacant  $vacant
-     * @return \Illuminate\Http\Response
-     */
     public function show(Vacant $vacant)
     {
         // if ($vacant->active === 0) return abort(404);
@@ -76,12 +54,6 @@ class VacantController extends Controller
         return view('vacants.show', compact('vacant'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Vacant  $vacant
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Vacant $vacant)
     {
         /* checks if the user is the same as the user who created the vacancy */
@@ -101,13 +73,6 @@ class VacantController extends Controller
         ));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Vacant  $vacant
-     * @return \Illuminate\Http\Response
-     */
     public function update(StoreVacant $request, Vacant $vacant)
     {
         $this->authorize('update', $vacant);
@@ -125,19 +90,13 @@ class VacantController extends Controller
         return redirect()->route('vacants.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Vacant  $vacant
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Vacant $vacant)
     {
         $this->authorize('delete', $vacant);
 
         $vacant->delete();
 
-        return response()->json(['message' => 'Se ha eliminado la vacante '.$vacant->title]);
+        return response()->json(['message' => 'Se ha eliminado la vacante ' . $vacant->title]);
     }
 
     public function search(SearchVacant $request)
@@ -179,8 +138,8 @@ class VacantController extends Controller
         if ($request->ajax()) {
             $image = $request->get('image');
 
-            if (File::exists('storage/vacants/'.  $image)) {
-                File::delete('storage/vacants/'. $image);
+            if (File::exists('storage/vacants/' .  $image)) {
+                File::delete('storage/vacants/' . $image);
             }
 
             return response('image successfully deleted', 200);
