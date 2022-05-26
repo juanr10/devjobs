@@ -30,10 +30,6 @@ class ApplicantController extends Controller
 
         $vacant = Vacant::find($request->vacant_id);
 
-        // if (!$vacant) {
-        //     return 'No se ha encontrado vacante';
-        // } -> validar luego con flash
-
         $vacant->applicants()->create([
             'name' => $request->name,
             'email' => $request->email,
