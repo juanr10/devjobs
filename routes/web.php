@@ -30,7 +30,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
  */
 Route::get('/', 'HomeController')->name('home');
 
-Route::get('/search/vacants', 'VacantController@results')->name('vacants.results');
 Route::post('/search/vacants', 'VacantController@search')->name('vacants.search');
 Route::get('/vacants/{vacant}', 'VacantController@show')->name('vacants.show');
 Route::get('/categories/{category}', 'CategoryController@show')->name('categories.show');

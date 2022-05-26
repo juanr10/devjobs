@@ -112,10 +112,6 @@ class VacantController extends Controller
         return view('search.index', compact('vacants'));
     }
 
-    public function results()
-    {
-    }
-
     public function changeStatus(Request $request, Vacant $vacant)
     {
         $vacant->active = $request->status;
